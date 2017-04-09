@@ -24,12 +24,21 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="rock.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AlertData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="RockCluster.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="rock.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
