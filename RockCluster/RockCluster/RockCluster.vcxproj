@@ -85,6 +85,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlertData.cpp" />
     <ClCompile Include="rock.cpp" />
     <ClCompile Include="RockCluster.cpp" />
     <ClCompile Include="stdafx.cpp">

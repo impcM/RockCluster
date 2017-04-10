@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include "AlertData.h"
-//class AlertData;
 
 class rock
 {
@@ -27,41 +26,6 @@ private:
 	double calculateGoodnessMeasure(std::vector<int> &clusteri, std::vector<int> &clusterj);
 };
 
-rock::rock(std::vector<AlertData> point, int k, double th)
-{
-	this->_point = point;
-	this->_k = k;
-	this->_th = th;
-	this->_dataSize = _point.size();
-	this->_powcount = 1.0 + 2.0 * (1 - th) / (1 + th);
-	//二维数组动态开辟空间
-	_similarityMatrix = new double*[_dataSize];
-	_linkMatrix = new int*[_dataSize];
-	_adjacency = new int*[_dataSize];
-	for (int i = 0; i < _dataSize; i++)
-	{
-		_similarityMatrix[i] = new double[_dataSize];
-		_linkMatrix[i] = new int[_dataSize];
-		_adjacency[i] = new int[_dataSize];
-	}
-
-}
-
-rock::~rock()
-{
-	for (int i = 0; i < _dataSize; i++)
-	{
-		delete[] _similarityMatrix[i];
-		delete[] _linkMatrix[i];
-		delete[] _adjacency[i];
-	}
-	delete[] _similarityMatrix;
-	delete[] _linkMatrix;
-	delete[] _adjacency;
-//	delete similarityMatrix;
-//	delete linkMatrix;
-//	delete clusterResult;
-}
 
 
 

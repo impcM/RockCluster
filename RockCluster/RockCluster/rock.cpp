@@ -3,6 +3,52 @@
 #include <cmath>
 #include <fstream>
 
+rock::rock(std::vector<AlertData> point, int k, double th)
+{
+	this->_point = point;
+	this->_k = k;
+	this->_th = th;
+	this->_dataSize = _point.size();
+	this->_powcount = 1.0 + 2.0 * (1 - th) / (1 + th);
+	//二维数组动态开辟空间
+	_similarityMatrix = new double*[_dataSize];
+	_linkMatrix = new int*[_dataSize];
+	_adjacency = new int*[_dataSize];
+	for (int i = 0; i < _dataSize; i++)
+	{
+		_similarityMatrix[i] = new double[_dataSize];
+		_linkMatrix[i] = new int[_dataSize];
+		_adjacency[i] = new int[_dataSize];
+	}
+	//初始化
+	for (int i = 0; i < _dataSize; i++)
+	{
+		for (int j = 0; j < _dataSize; j++)
+		{
+			_similarityMatrix[i][j] = 0;
+			_linkMatrix[i][j] = 0;
+			_adjacency[i][j] = 0;
+		}
+	}
+}
+
+rock::~rock()
+{
+	for (int i = 0; i < _dataSize; i++)
+	{
+		delete[] _similarityMatrix[i];
+		delete[] _linkMatrix[i];
+		delete[] _adjacency[i];
+	}
+	delete[] _similarityMatrix;
+	delete[] _linkMatrix;
+	delete[] _adjacency;
+	//	delete similarityMatrix;
+	//	delete linkMatrix;
+	//	delete clusterResult;
+}
+
+
 void rock::calculateMatrix(){
 	for (int i = 0; i < _dataSize; i++)
 	{
@@ -80,7 +126,8 @@ void rock::fit(){
 	//建立初始聚类
 	for (int i = 0; i < _dataSize; i++)
 	{
-		std::vector<int> temp(i);
+		std::vector<int> temp;
+		temp.push_back(i);
 		cluster.push_back(temp);
 	}
 	int current_cluster = _dataSize;
@@ -125,4 +172,5 @@ void rock::fit(){
 		}
 	}
 	outfile.close();
+	
 }
